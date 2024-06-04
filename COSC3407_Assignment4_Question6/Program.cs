@@ -1,5 +1,4 @@
-﻿
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
@@ -7,8 +6,8 @@ internal class Program
         {
             Console.WriteLine("Page number and Offset Calculator");
             Console.WriteLine("--------------------");
-            decimal pageSize = GetDecimal("What is the size of the page? Please enter total bit value! example: 1kb page -> enter 1000 :  ");
-            decimal addressReference = GetDecimal("Please enter the address reference:  ");
+            int pageSize = GetInteger("What is the size of the page? Please enter total bit value! example: 1kb page -> enter 1000 :  ");
+            int addressReference = GetInteger("Please enter the address reference:  ");
             Console.WriteLine(GetPageNumber(pageSize, addressReference));
             Console.WriteLine(GetOffset(pageSize, addressReference));
 
@@ -24,35 +23,35 @@ internal class Program
                 Console.Clear();
             }
         }
-        
+
 
     }
 
     // Calculates Offset
-    private static string GetOffset(decimal pageSize, decimal addressReference)
+    private static string GetOffset(int pageSize, int addressReference)
     {
-        decimal result = addressReference % pageSize;
+        int result = addressReference % pageSize;
         return $"Offset is {result}";
     }
 
     // Calculates Page Number
-    private static string GetPageNumber(decimal pageSize, decimal addressReference)
+    private static string GetPageNumber(int pageSize, int addressReference)
     {
-        decimal result = addressReference / pageSize;
+        int result = addressReference / pageSize;
         return $"Page number is {result}";
     }
 
-    // takes a message to be delivered to the user and returns a inputted decimal value to the main function
-    public static decimal GetDecimal(string userMessage)
+    // takes a message to be delivered to the user and returns a inputted int value to the main function
+    public static int GetInteger(string userMessage)
     {
         Console.Write(userMessage);
-        bool isDecimal = decimal.TryParse(Console.ReadLine(), out decimal returnValue);
+        bool isDecimal = int.TryParse(Console.ReadLine(), out int returnValue);
 
-        // until the user enters a valid decimal value, reprompts them
+        // until the user enters a valid int value, reprompts them
         while (!isDecimal)
         {
-            Console.WriteLine("please enter a valid decimal value");
-            isDecimal = decimal.TryParse(Console.ReadLine(), out  returnValue); ;
+            Console.WriteLine("please enter a valid int value");
+            isDecimal = int.TryParse(Console.ReadLine(), out returnValue); ;
         }
         return returnValue;
     }
